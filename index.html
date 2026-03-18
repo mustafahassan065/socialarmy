@@ -3,377 +3,734 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Army - TikTok Growth & Monetization | $39/Month</title>
-    <meta name="description" content="Join Social Army Premium for $39/month. Master TikTok growth, viral content strategies, and monetization. 20% affiliate commission. Grow your audience fast.">
+    <title>Social Army | Hack the Algorithm & Monetize Your Audience</title>
+    <meta name="description" content="Escape the 200-view jail. Learn the exact retention editing, hook frameworks, and algorithmic secrets to go viral and build a 6-figure personal brand.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        creator: {
+                            base: '#000000',       /* Pitch Black */
+                            surface: '#0A0A0A',    /* Dark Surface */
+                            panel: '#121212',      /* Panel BG */
+                            border: '#222222',     /* Borders */
+                            pink: '#FF0050',       /* TikTok Pink */
+                            pinkGlow: '#E60045',   
+                            cyan: '#00F2FE',       /* TikTok Cyan */
+                            cyanGlow: '#00D1DB',
+                            purple: '#7B2CBF'
+                        }
+                    },
+                    animation: {
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-fast': 'float 4s ease-in-out infinite alternate',
+                        'pulse-pink': 'pulsePink 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'pulse-cyan': 'pulseCyan 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'chart-grow': 'chartGrow 2s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+                        },
+                        pulsePink: {
+                            '0%, 100%': { opacity: 0.1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.3, transform: 'scale(1.05)', boxShadow: '0 0 40px rgba(255, 0, 80, 0.5)' },
+                        },
+                        pulseCyan: {
+                            '0%, 100%': { opacity: 0.1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.3, transform: 'scale(1.05)', boxShadow: '0 0 40px rgba(0, 242, 254, 0.5)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        chartGrow: {
+                            '0%': { strokeDasharray: '0, 1000' },
+                            '100%': { strokeDasharray: '1000, 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f0f13; color: #ffffff; }
-        .font-display { font-family: 'Outfit', sans-serif; }
-        .gradient-tiktok { background: linear-gradient(135deg, #ff0050 0%, #00f2ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .gradient-pink { background: linear-gradient(135deg, #ff0050 0%, #ff4080 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,0,80,0.2); }
-        .glow-pink { box-shadow: 0 0 40px rgba(255,0,80,0.2); }
-        .tiktok-grid { background-image: linear-gradient(rgba(255,0,80,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,242,234,0.03) 1px, transparent 1px); background-size: 50px 50px; }
-        .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; transform: translateY(100%); transition: transform 0.3s; }
-        .sticky-cta.visible { transform: translateY(0); }
-        .btn-tiktok { background: linear-gradient(135deg, #ff0050, #ff4080); }
-        .btn-tiktok:hover { background: linear-gradient(135deg, #e60047, #e63971); }
-        .stat-number { font-family: 'Outfit', sans-serif; }
+        body { background-color: #000000; color: #FFFFFF; overflow-x: hidden; }
+        
+        /* Glassmorphism & Custom Gradients */
+        .glass-panel { background: rgba(18, 18, 18, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .text-gradient-viral { background: linear-gradient(135deg, #FF0050 0%, #00F2FE 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-gradient-viral { background: linear-gradient(135deg, #FF0050 0%, #7B2CBF 50%, #00F2FE 100%); background-size: 200% 200%; animation: gradientMove 5s ease infinite; }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .btn-glow-pink:hover { box-shadow: 0 0 30px rgba(255, 0, 80, 0.5); transform: translateY(-2px); }
+        .btn-glow-cyan:hover { box-shadow: 0 0 30px rgba(0, 242, 254, 0.5); transform: translateY(-2px); }
+        
+        /* Grid Backgrounds */
+        .bg-grid-dots {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #222222; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF0050; }
+        
+        /* Chart Path Animation */
+        .path-animated {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden tiktok-grid">
+<body class="antialiased selection:bg-creator-pink selection:text-white">
 
-    <!-- Sticky Header -->
-    <header class="fixed top-0 w-full bg-[#0f0f13]/95 backdrop-blur-md border-b border-pink-500/20 z-40">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-[#ff0050] to-[#00f2ea] rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+    <div class="bg-gradient-viral text-white font-sans text-xs font-bold py-2 text-center uppercase tracking-widest relative z-50">
+        Stop posting to zero views. The new 2026 Algorithm Framework is inside. <a href="#pricing" class="underline ml-2 hover:text-creator-cyan">Unlock Access</a>
+    </div>
+
+    <nav x-data="{ scrolled: false, mobileMenuOpen: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20)" 
+         :class="{'bg-creator-base/80 backdrop-blur-xl border-b border-creator-border shadow-2xl': scrolled, 'bg-transparent border-transparent': !scrolled}"
+         class="fixed w-full z-40 transition-all duration-300 top-8">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl bg-creator-panel border border-creator-border flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-viral opacity-20"></div>
+                        <svg class="w-6 h-6 text-white relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <span class="font-display font-black text-2xl tracking-tight text-white uppercase">
+                        Social<span class="text-gradient-viral">Army</span>
+                    </span>
                 </div>
-                <span class="font-display text-xl font-bold tracking-tight">SOCIAL<span class="text-[#ff0050]">ARMY</span></span>
-            </div>
-            <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" class="btn-tiktok text-white font-bold px-6 py-2 rounded-full text-sm transition-all">
-                JOIN $39/MO
-            </a>
-        </div>
-    </header>
+                
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#the-trap" class="font-sans text-sm font-semibold text-gray-400 hover:text-white transition-colors">The 200-View Jail</a>
+                    <a href="#dashboard" class="font-sans text-sm font-semibold text-gray-400 hover:text-white transition-colors">Analytics Framework</a>
+                    <a href="#curriculum" class="font-sans text-sm font-semibold text-gray-400 hover:text-white transition-colors">Curriculum</a>
+                    <a href="#wall-of-fame" class="font-sans text-sm font-semibold text-gray-400 hover:text-white transition-colors">Wall of Fame</a>
+                    
+                    <div class="pl-6 border-l border-creator-border">
+                        <a href="#pricing" class="bg-white text-black font-display font-bold uppercase tracking-wider text-sm px-8 py-3 rounded-full transition-all hover:bg-gray-200 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                            Join For $39
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-pink-900/10 via-transparent to-cyan-900/5"></div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-1/4 right-10 glass-card p-4 rounded-xl hidden lg:block animate-pulse">
-            <div class="text-[#00f2ea] font-bold text-2xl stat-number">+50K</div>
-            <div class="text-xs text-gray-400">Followers in 30 days</div>
-        </div>
-        <div class="absolute bottom-1/4 left-10 glass-card p-4 rounded-xl hidden lg:block animate-pulse" style="animation-delay: 1s;">
-            <div class="text-[#ff0050] font-bold text-2xl stat-number">1.2M</div>
-            <div class="text-xs text-gray-400">Views per video avg</div>
+                <div class="lg:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="container mx-auto px-4 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 bg-pink-500/10 border border-pink-500/20 rounded-full px-4 py-2 mb-6">
-                <span class="w-2 h-2 bg-[#ff0050] rounded-full animate-pulse"></span>
-                <span class="text-sm text-pink-200">🔥 TikTok Growth & Monetization</span>
-            </div>
-            
-            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-                GO VIRAL.<br>
-                <span class="gradient-tiktok">GET PAID.</span>
-            </h1>
-            
-            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-                Join Social Army Premium for <span class="text-[#ff0050] font-bold">$39/month</span>. 
-                Master TikTok's algorithm, create viral content, and build a monetizable audience. 
-                From 0 to 100K followers with proven strategies.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" 
-                   class="btn-tiktok text-white font-black text-lg px-10 py-5 rounded-full transition-all transform hover:scale-105 glow-pink flex items-center gap-2">
-                    <span>JOIN PREMIUM - $39/MO</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+        <div x-show="mobileMenuOpen" x-collapse class="lg:hidden bg-creator-panel border-t border-creator-border">
+            <div class="px-4 pt-4 pb-8 space-y-2">
+                <a href="#the-trap" @click="mobileMenuOpen = false" class="block px-4 py-4 font-display text-base font-bold text-gray-300 hover:text-white hover:bg-creator-border rounded-lg">The Trap</a>
+                <a href="#dashboard" @click="mobileMenuOpen = false" class="block px-4 py-4 font-display text-base font-bold text-gray-300 hover:text-white hover:bg-creator-border rounded-lg">Analytics</a>
+                <a href="#curriculum" @click="mobileMenuOpen = false" class="block px-4 py-4 font-display text-base font-bold text-gray-300 hover:text-white hover:bg-creator-border rounded-lg">Curriculum</a>
+                <a href="#pricing" @click="mobileMenuOpen = false" class="block px-4 py-4 mt-6 text-center font-bold text-base uppercase text-black bg-white rounded-full">
+                    Join Premium ($39)
                 </a>
             </div>
+        </div>
+    </nav>
 
-            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+    <section class="relative pt-40 pb-24 lg:pt-56 lg:pb-32 overflow-hidden bg-grid-dots border-b border-creator-border">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-1/4 left-0 w-[600px] h-[600px] bg-creator-pink/20 rounded-full blur-[150px] animate-pulse-pink"></div>
+            <div class="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-creator-cyan/20 rounded-full blur-[150px] animate-pulse-cyan"></div>
+            
+            <div class="absolute top-1/3 left-1/4 animate-float-slow opacity-30">
+                <svg class="w-16 h-16 text-creator-pink" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="absolute bottom-1/3 right-1/4 animate-float-fast opacity-30 delay-1000">
+                <svg class="w-20 h-20 text-creator-cyan" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </div>
+            <div class="absolute top-1/4 right-1/3 animate-float-slow opacity-20 delay-2000">
+                <svg class="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-creator-pink/30 bg-creator-pink/10 font-sans text-sm font-semibold text-white mb-8 backdrop-blur-md">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-creator-pink opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-creator-pinkGlow"></span>
+                </span>
+                Over 1.5 Billion Views Generated by Members
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-display font-black mb-8 leading-[1.05] tracking-tight">
+                Stop Posting To Zero.<br>
+                Print <span class="text-gradient-viral">Attention.</span><br>
+                Monetize <span class="text-white">Everything.</span>
+            </h1>
+            
+            <p class="mt-6 text-xl text-gray-400 font-medium leading-relaxed max-w-3xl mx-auto">
+                The algorithm isn't broken, your content is. Learn the exact retention frameworks, hook structures, and editing secrets that the top 0.1% of creators use to go viral on command and build 6-figure personal brands.
+            </p>
+            
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+                <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" class="inline-flex items-center justify-center px-10 py-5 text-lg font-display font-bold rounded-full text-black bg-white transition-all btn-glow-cyan shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                    Join Social Army Premium
+                    <svg class="ml-3 w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="#dashboard" class="inline-flex items-center justify-center px-10 py-5 text-lg font-display font-bold rounded-full text-white border-2 border-creator-border hover:bg-creator-panel hover:border-white transition-all">
+                    See The Framework
+                </a>
+            </div>
+            
+            <div class="mt-10 flex flex-wrap justify-center items-center gap-6 font-sans text-sm text-gray-500 font-medium">
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    <span>20% Affiliate Commission</span>
+                    <svg class="w-5 h-5 text-creator-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cancel Anytime
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-[#00f2ea]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    <span>Algorithm Hacks</span>
+                    <svg class="w-5 h-5 text-creator-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg> Secure Whop Checkout
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                    <span>Monetization Blueprint</span>
+                    <svg class="w-5 h-5 text-creator-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Instant Discord Access
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <div class="bg-gradient-to-r from-pink-900/10 to-cyan-900/10 border-y border-pink-500/20 py-8 mt-10">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-3xl stat-number font-black text-[#ff0050]">500K+</div>
-                    <div class="text-sm text-gray-500">Followers Gained</div>
-                </div>
-                <div>
-                    <div class="text-3xl stat-number font-black text-[#00f2ea]">50M+</div>
-                    <div class="text-sm text-gray-500">Total Views</div>
-                </div>
-                <div>
-                    <div class="text-3xl stat-number font-black text-[#ff0050]">$200K+</div>
-                    <div class="text-sm text-gray-500">Member Earnings</div>
-                </div>
-                <div>
-                    <div class="text-3xl stat-number font-black text-[#00f2ea]">3</div>
-                    <div class="text-sm text-gray-500">Active Members</div>
-                </div>
-            </div>
+    <div class="bg-creator-panel py-5 border-b border-creator-border overflow-hidden relative">
+        <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-creator-panel to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-creator-panel to-transparent z-10"></div>
+        <div class="flex whitespace-nowrap animate-marquee items-center text-gray-300 font-display font-bold uppercase tracking-widest text-sm">
+            <span class="mx-8 flex items-center gap-2">🔥 @ALEX_HUSTLES HIT 1.2M VIEWS</span>
+            <span class="mx-8 text-creator-pink">✦</span>
+            <span class="mx-8 flex items-center gap-2">💰 @SARAHFIT CLOSED $2K BRAND DEAL</span>
+            <span class="mx-8 text-creator-cyan">✦</span>
+            <span class="mx-8 flex items-center gap-2">🚀 @TECHREVIEW GAINED 50K FOLLOWERS IN 30 DAYS</span>
+            <span class="mx-8 text-creator-pink">✦</span>
+            <span class="mx-8 flex items-center gap-2">📈 @MONEYTIPS MONETIZED CREATOR FUND</span>
+            <span class="mx-8 text-creator-cyan">✦</span>
+            <span class="mx-8 flex items-center gap-2">🔥 @ALEX_HUSTLES HIT 1.2M VIEWS</span>
+            <span class="mx-8 text-creator-pink">✦</span>
+            <span class="mx-8 flex items-center gap-2">💰 @SARAHFIT CLOSED $2K BRAND DEAL</span>
         </div>
     </div>
 
-    <!-- What You Learn -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
+    <section id="the-trap" class="py-24 bg-creator-base border-b border-creator-border relative">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                
+                <div class="relative z-10">
+                    <h2 class="font-sans text-sm font-bold text-creator-pink tracking-widest uppercase mb-4">The Brutal Reality</h2>
+                    <h3 class="text-4xl md:text-5xl lg:text-6xl font-display font-black mb-8 leading-tight">The "200-View Jail" is not a glitch. <span class="text-gray-600">It's a filter.</span></h3>
+                    
+                    <div class="space-y-6 text-lg text-gray-300 font-medium leading-relaxed">
+                        <p>
+                            You spend 3 hours scripting, shooting, and editing a video. You post it. It shoots up to 234 views in the first 20 minutes... <strong class="text-white">and then completely dies.</strong> Not a single view more. 
+                        </p>
+                        <p>
+                            Gurus tell you to "just stay consistent" and "post 3 times a day." <span class="text-creator-pink font-bold">This is terrible advice.</span> If your content doesn't trigger the algorithm's retention metrics, posting more garbage won't help. You are just training the algorithm to categorize your account as "low quality."
+                        </p>
+                        
+                        <div class="glass-panel border-l-4 border-creator-pink p-8 mt-10 rounded-r-xl">
+                            <h4 class="text-white font-display font-bold text-2xl mb-4 flex items-center gap-3">
+                                <svg class="w-8 h-8 text-creator-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                The Retention Threshold
+                            </h4>
+                            <p class="text-base text-gray-400">The platforms only care about one thing: keeping people on the app. If your video doesn't have a 70%+ retention rate in the first 3 seconds (The Hook), and a 30%+ watch-full rate, the algorithm buries it. <strong class="text-white">Social Army teaches you the psychology to hack these exact metrics.</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="relative rounded-2xl p-2 bg-gradient-to-tr from-creator-pink to-creator-cyan shadow-[0_0_50px_rgba(255,0,80,0.2)] transform rotate-2 hover:rotate-0 transition-all duration-500">
+                        <div class="bg-creator-panel rounded-xl overflow-hidden relative">
+                            <div class="aspect-[9/16] relative bg-creator-base">
+                                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" alt="Content Creation" class="w-full h-full object-cover opacity-50 grayscale mix-blend-luminosity">
+                                
+                                <div class="absolute right-4 bottom-32 flex flex-col gap-6 items-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                        </div>
+                                        <span class="text-white font-bold text-sm drop-shadow-md">248K</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18z"/></svg>
+                                        </div>
+                                        <span class="text-white font-bold text-sm drop-shadow-md">12K</span>
+                                    </div>
+                                    <div class="flex flex-col items-center gap-1">
+                                        <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                                        </div>
+                                        <span class="text-white font-bold text-sm drop-shadow-md">54K</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="absolute bottom-4 left-4 right-20">
+                                    <h4 class="text-white font-bold text-lg drop-shadow-md mb-1">@ViralHustler</h4>
+                                    <p class="text-white text-sm drop-shadow-md mb-2">How I escaped the 9-5 using this one psychological trick... 🤯 #business #money</p>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-4 h-4 text-white"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+                                        <span class="text-white text-xs font-bold">Original Audio - Trending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="py-24 bg-creator-panel border-b border-creator-border relative overflow-hidden" x-data="{ 
+        views: 245000, 
+        followers: 1240, 
+        revenue: 45.20,
+        timer: null,
+        init() {
+            // Simulate viral growth every few seconds
+            this.timer = setInterval(() => {
+                let viewJump = Math.floor(Math.random() * 5000) + 1000;
+                this.views += viewJump;
+                this.followers += Math.floor(viewJump * 0.015);
+                this.revenue += (viewJump * 0.0008);
+            }, 2500);
+        }
+    }">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">MASTER THE <span class="gradient-tiktok">ALGORITHM</span></h2>
-                <p class="text-gray-400 text-lg">Everything you need to dominate TikTok</p>
+                <h2 class="font-sans text-sm font-bold text-creator-cyan tracking-widest uppercase mb-4">The Result of Good Frameworks</h2>
+                <h3 class="text-4xl md:text-5xl lg:text-6xl font-display font-black mb-6 text-white">This Is What <span class="text-gradient-viral">"Going Viral"</span> Looks Like.</h3>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">When you hit the right retention metrics, the algorithm does the heavy lifting. Watch the simulated dashboard below based on real member data.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-[#ff0050]/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div class="bg-creator-base border border-creator-border rounded-2xl p-6 md:p-10 shadow-[0_0_80px_rgba(0,0,0,0.8)] max-w-5xl mx-auto">
+                
+                <div class="flex flex-wrap justify-between items-center mb-10 border-b border-creator-border pb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-gradient-viral rounded-full p-0.5">
+                            <div class="w-full h-full bg-creator-base rounded-full border-2 border-creator-base overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-display font-bold text-white">Creator Analytics</h4>
+                            <p class="text-sm text-gray-500 font-medium">Last 7 Days (Live Sync)</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Viral Content Formula</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">The exact structure of viral videos. Hook templates, retention tactics, and the psychology of shareable content.</p>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-creator-panel rounded-lg border border-creator-border mt-4 sm:mt-0">
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-sm font-bold text-white">Algorithm Pushing</span>
+                    </div>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-[#00f2ea]/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-[#00f2ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-creator-panel p-6 rounded-xl border border-creator-border relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-creator-pink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <p class="text-sm text-gray-400 font-bold uppercase tracking-wider mb-2">Total Video Views</p>
+                        <div class="flex items-end gap-3">
+                            <h4 class="text-4xl lg:text-5xl font-display font-black text-white" x-text="views.toLocaleString()"></h4>
+                            <span class="text-creator-pink font-bold text-sm mb-1">↑ 8,420%</span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Algorithm Hacking</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Understand the FYP (For You Page) algorithm. Posting times, hashtag strategies, and engagement triggers that force distribution.</p>
+                    
+                    <div class="bg-creator-panel p-6 rounded-xl border border-creator-border relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-creator-cyan/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <p class="text-sm text-gray-400 font-bold uppercase tracking-wider mb-2">Net Followers</p>
+                        <div class="flex items-end gap-3">
+                            <h4 class="text-4xl lg:text-5xl font-display font-black text-white" x-text="followers.toLocaleString()"></h4>
+                            <span class="text-creator-cyan font-bold text-sm mb-1">↑ 1,205%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-creator-panel p-6 rounded-xl border border-creator-border relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <p class="text-sm text-gray-400 font-bold uppercase tracking-wider mb-2">Est. Creator Revenue</p>
+                        <div class="flex items-end gap-3">
+                            <h4 class="text-4xl lg:text-5xl font-display font-black text-white" x-text="'$' + revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})"></h4>
+                            <span class="text-green-500 font-bold text-sm mb-1">↑ 450%</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="bg-creator-panel p-6 rounded-xl border border-creator-border">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-lg font-bold text-white">Growth Trajectory</h4>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 text-xs font-bold rounded bg-creator-base border border-creator-border text-gray-400">1D</span>
+                            <span class="px-3 py-1 text-xs font-bold rounded bg-creator-border text-white">7D</span>
+                            <span class="px-3 py-1 text-xs font-bold rounded bg-creator-base border border-creator-border text-gray-400">30D</span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Monetization Blueprint</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Turn followers into revenue. Creator Fund, brand deals, affiliate marketing, and digital product strategies that actually work.</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    
+                    <div class="w-full h-64 relative">
+                        <div class="absolute inset-0 flex flex-col justify-between">
+                            <div class="w-full h-px bg-creator-border"></div>
+                            <div class="w-full h-px bg-creator-border"></div>
+                            <div class="w-full h-px bg-creator-border"></div>
+                            <div class="w-full h-px bg-creator-border"></div>
+                            <div class="w-full h-px bg-creator-border"></div>
+                        </div>
+                        
+                        <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 300">
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            
+                            <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#FF0050" stop-opacity="0.5"/>
+                                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                            </linearGradient>
+                            
+                            <path d="M 0 280 L 100 275 L 200 270 L 300 260 L 400 240 L 500 200 L 600 120 L 700 80 L 800 50 L 900 30 L 1000 10" 
+                                  fill="none" 
+                                  stroke="url(#lineGradient)" 
+                                  stroke-width="6" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round"
+                                  filter="url(#glow)"
+                                  class="path-animated"/>
+                                  
+                            <path d="M 0 280 L 100 275 L 200 270 L 300 260 L 400 240 L 500 200 L 600 120 L 700 80 L 800 50 L 900 30 L 1000 10 L 1000 300 L 0 300 Z" 
+                                  fill="url(#areaGradient)"/>
+                            
+                            <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#FF0050"/>
+                                <stop offset="100%" stop-color="#00F2FE"/>
+                            </linearGradient>
+                            
+                            <circle cx="500" cy="200" r="6" fill="#FFFFFF" stroke="#FF0050" stroke-width="3"/>
+                            <circle cx="800" cy="50" r="6" fill="#FFFFFF" stroke="#00F2FE" stroke-width="3"/>
+                            
+                            <g transform="translate(420, 130)">
+                                <rect width="120" height="40" rx="4" fill="#121212" stroke="#333333"/>
+                                <text x="60" y="25" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Algorithm Kick-in</text>
+                            </g>
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Video Editing Mastery</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">CapCut and editing workflows that save hours. Templates, transitions, and effects that boost watch time and shares.</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Private Community</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Network with serious creators. Accountability, collaboration, and insider strategies shared in real-time.</p>
-                </div>
-
-                <div class="glass-card p-6 rounded-2xl hover:border-pink-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Trend Forecasting</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Catch trends before they explode. Audio predictions, format spotting, and early-mover advantage strategies.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Success Stories -->
-    <section class="py-20 bg-white/5">
-        <div class="container mx-auto px-4">
+    <section id="curriculum" class="py-24 bg-creator-base border-b border-creator-border">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="font-display text-4xl font-bold mb-4">CREATOR <span class="gradient-pink">TRANSFORMATIONS</span></h2>
-                <p class="text-gray-400">Real members, real growth, real income</p>
+                <h2 class="font-sans text-sm font-bold text-creator-pink tracking-widest uppercase mb-4">Inside Social Army Premium</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-black mb-4">The Viral <span class="text-white">Curriculum.</span></h3>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">This is not a generic "how to edit" course. This is a psychological masterclass on human attention.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="glass-card p-6 rounded-2xl border-l-4 border-[#ff0050]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-[#ff0050] to-[#ff4080] rounded-full flex items-center justify-center text-white font-bold">SK</div>
-                        <div>
-                            <div class="font-bold">Sarah K.</div>
-                            <div class="text-xs text-gray-500">Lifestyle Creator</div>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-pink transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🪝</span>
                     </div>
-                    <div class="text-2xl font-black text-[#ff0050] mb-2">0 → 180K</div>
-                    <div class="text-sm text-gray-400 mb-3">Followers in 90 days</div>
-                    <p class="text-gray-300 text-sm leading-relaxed">"Applied the viral formula from day one. Hit 100K in 60 days and got my first brand deal. The algorithm hacks actually work."</p>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">Hook Psychology</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">If they don't watch the first 3 seconds, the rest of the video doesn't matter. Learn the visual, auditory, and psychological hook frameworks that make scrolling physically impossible.</p>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl border-l-4 border-[#00f2ea]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-[#00f2ea] to-[#00d4c0] rounded-full flex items-center justify-center text-black font-bold">JM</div>
-                        <div>
-                            <div class="font-bold">Jake M.</div>
-                            <div class="text-xs text-gray-500">Fitness Niche</div>
-                        </div>
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-cyan transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">✂️</span>
                     </div>
-                    <div class="text-2xl font-black text-[#00f2ea] mb-2">$8,400</div>
-                    <div class="text-sm text-gray-400 mb-3">First month earnings</div>
-                    <p class="text-gray-300 text-sm leading-relaxed">"Monetization blueprint changed everything. Not just Creator Fund - affiliate sales and digital products. Multiple income streams from one account."</p>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">Retention Editing</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">Pacing is everything. We give you exact CapCut/Premiere timelines. Learn pattern interrupts, b-roll placement, sound design, and subtitle pacing to hold viewers to the end.</p>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">AT</div>
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-purple transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🧠</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">Algorithmic Engineering</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">Stop guessing what the algorithm wants. Understand exactly how the FYP (For You Page) categorizes content, tests it to small audiences, and decides when to push it to millions.</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-pink transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">💡</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">Endless Ideation</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">Never run out of video ideas again. We teach you our proprietary content matrix: how to steal like an artist, remix viral trends into your niche, and script videos in 5 minutes.</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-cyan transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">💸</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">Monetization Funnels</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">Views are vanity, cash is sanity. Learn how to convert your audience into money through CPA affiliate marketing, digital products, coaching, and landing high-paying brand sponsorships.</p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border border-creator-border hover:border-creator-purple transition-all group">
+                    <div class="w-14 h-14 bg-creator-panel rounded-xl flex items-center justify-center border border-creator-border mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🤝</span>
+                    </div>
+                    <h4 class="text-2xl font-display font-bold text-white mb-3">The Discord Army</h4>
+                    <p class="text-gray-400 text-base leading-relaxed">Network with creators who have millions of followers. Share sounds, review each other's scripts before filming, and get direct feedback from 6-figure social media entrepreneurs.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="wall-of-fame" class="py-24 bg-creator-panel border-b border-creator-border">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-black uppercase text-center mb-16">Wall of <span class="text-gradient-viral">Fame</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-creator-base p-8 border border-creator-border rounded-2xl relative">
+                    <div class="absolute -top-4 -right-4 bg-creator-pink text-white font-bold px-3 py-1 rounded-full text-sm transform rotate-6 shadow-lg">0 to 140k in 60 Days</div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-white">MK</div>
                         <div>
-                            <div class="font-bold">Alex T.</div>
-                            <div class="text-xs text-gray-500">Business Niche</div>
+                            <p class="font-bold text-white">Mark K.</p>
+                            <p class="text-xs text-creator-cyan">Fitness Niche</p>
                         </div>
                     </div>
-                    <div class="text-2xl font-black text-purple-400 mb-2">2.5M</div>
-                    <div class="text-sm text-gray-400 mb-3">Views on one video</div>
-                    <p class="text-gray-300 text-sm leading-relaxed">"Used the hook templates for business content. Boring topic went viral. Generated $40K in course sales from that one video."</p>
+                    <p class="text-gray-300 mb-4 leading-relaxed font-medium">"I was stuck at 2,000 followers for 8 months. I joined Social Army, changed my hook structure based on module 2, and my third video hit 4.2 Million views. The frameworks here are basically cheat codes for the algorithm."</p>
+                </div>
+
+                <div class="bg-creator-base p-8 border border-creator-border rounded-2xl relative">
+                    <div class="absolute -top-4 -right-4 bg-creator-cyan text-black font-bold px-3 py-1 rounded-full text-sm transform rotate-6 shadow-lg">$4k/mo from CPA</div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-white">JD</div>
+                        <div>
+                            <p class="font-bold text-white">Jessica D.</p>
+                            <p class="text-xs text-creator-cyan">Finance/Tech Niche</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed font-medium">"Everyone teaches how to get views, but no one teaches how to monetize. The affiliate funnel training in this discord allowed me to quit my barista job. I'm now making full-time income from link-in-bio clicks."</p>
+                </div>
+
+                <div class="bg-creator-base p-8 border border-creator-border rounded-2xl relative">
+                    <div class="absolute -top-4 -right-4 bg-purple-500 text-white font-bold px-3 py-1 rounded-full text-sm transform rotate-6 shadow-lg">Un-Shadowbanned</div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-white">TT</div>
+                        <div>
+                            <p class="font-bold text-white">Tyler T.</p>
+                            <p class="text-xs text-creator-cyan">Entertainment</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed font-medium">"My account was completely dead (getting 10-15 views a video). The community helped me diagnose my shadowban, clean my account status, and now I'm back to averaging 50k+ views a post. The Discord community is family."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto">
-                <div class="glass-card rounded-3xl p-8 md:p-12 border-2 border-[#ff0050]/30 relative overflow-hidden glow-pink">
-                    <div class="absolute top-0 right-0 btn-tiktok text-white font-bold px-6 py-2 rounded-bl-2xl text-sm">PREMIUM ACCESS</div>
+    <section id="pricing" class="py-24 bg-creator-base border-b border-creator-border relative">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000')] bg-cover bg-center opacity-5 mix-blend-screen pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-black mb-4 uppercase">Your Turn To <span class="text-creator-pink">Blow Up.</span></h2>
+                <p class="text-xl text-gray-400">Cancel anytime. Instant access to the course and community.</p>
+            </div>
+
+            <div class="relative bg-gradient-to-b from-creator-panel to-creator-base border-2 border-creator-cyan/50 rounded-[2rem] p-1 shadow-[0_0_80px_rgba(0,242,254,0.15)] transform md:scale-105 z-10">
+                
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-creator-cyan text-black font-display font-bold uppercase tracking-widest px-8 py-2 rounded-full shadow-xl">
+                    Full Access Membership
+                </div>
+
+                <div class="bg-creator-base rounded-[30px] p-8 md:p-12 border border-creator-border flex flex-col md:flex-row gap-12 items-center">
                     
-                    <div class="text-center mb-8">
-                        <h3 class="font-display text-3xl font-bold mb-2 text-white">SOCIAL ARMY PREMIUM</h3>
-                        <p class="text-gray-400">Complete TikTok mastery system</p>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-3xl font-display font-black text-white mb-2">Social Army Premium</h3>
+                        <p class="font-sans text-sm text-gray-400 mb-8">The complete creator ecosystem.</p>
+                        
+                        <div class="flex items-baseline justify-center md:justify-start gap-2 mb-2">
+                            <span class="text-7xl font-display font-black text-white">$39</span>
+                            <span class="font-sans text-lg text-gray-500 font-bold">/ month</span>
+                        </div>
+                        <p class="text-sm text-creator-cyan font-bold mb-8">That's $1.30 a day to build a career.</p>
+                        
+                        <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" class="block w-full text-center bg-white text-black font-display font-black uppercase tracking-wider py-5 rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)] text-lg">
+                            Join The Army Now
+                        </a>
                     </div>
-                    
-                    <div class="flex items-baseline justify-center gap-2 mb-8">
-                        <span class="text-6xl stat-number font-black text-white">$39</span>
-                        <span class="text-gray-400 text-xl">/ month</span>
+
+                    <div class="flex-1 w-full md:border-l border-creator-border pt-8 md:pt-0 md:pl-10">
+                        <ul class="space-y-5">
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-creator-cyan/10 flex items-center justify-center text-creator-cyan flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-base">Full Viral Curriculum (A-Z)</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-creator-cyan/10 flex items-center justify-center text-creator-cyan flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-base">Private Discord Community</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-creator-cyan/10 flex items-center justify-center text-creator-cyan flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-base">Monetization & CPA Guides</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-creator-cyan/10 flex items-center justify-center text-creator-cyan flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-base">Account Audit & Feedback</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-creator-cyan/10 flex items-center justify-center text-creator-cyan flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-white font-bold text-base">Trending Audio Alerts</span>
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Viral Content Formula Training</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Algorithm Hacking Strategies</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Monetization Blueprint</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Private Discord Community</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Weekly Live Q&A Calls</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">Hook Templates & Scripts</span></li>
-                        <li class="flex items-center gap-3"><svg class="w-5 h-5 text-[#ff0050]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-gray-300">20% Affiliate Commission</span></li>
-                    </ul>
-                    
-                    <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" 
-                       class="block w-full btn-tiktok text-white font-black text-center text-xl px-8 py-5 rounded-full transition-all transform hover:scale-105">
-                        JOIN SOCIAL ARMY →
-                    </a>
-                    
-                    <p class="text-xs text-center text-gray-500 mt-4">
-                        Cancel anytime • 20% affiliate commission • Instant access
-                    </p>
                 </div>
             </div>
+            
+            <p class="text-center text-gray-500 text-sm mt-10 font-medium">
+                Want to check out the basic platform first? <br>
+                <a href="https://whop.com/social-army?a=digitalartlab" target="_blank" class="text-creator-pink hover:underline font-bold mt-2 inline-block">View Standard Whop Listing</a>
+            </p>
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="py-20 bg-white/5">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <h2 class="font-display text-4xl font-bold text-center mb-12">QUESTIONS? <span class="text-[#ff0050]">ANSWERED.</span></h2>
+    <section class="py-24 bg-creator-panel border-b border-creator-border" x-data="{ openFaq: null }">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-display font-black text-center mb-12">Frequently Asked <span class="text-white">Questions</span></h2>
             
             <div class="space-y-4">
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center font-bold hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
-                        <span>Do I need existing followers?</span>
-                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-creator-base border border-creator-border rounded-xl overflow-hidden transition-all duration-300">
+                    <button @click="openFaq = openFaq === 1 ? null : 1" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-creator-border/50 focus:outline-none">
+                        <span class="font-bold text-white text-lg">I have 0 followers. Is this for me?</span>
+                        <svg :class="{'rotate-180 text-creator-pink': openFaq === 1}" class="w-6 h-6 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="hidden px-6 pb-4 text-gray-400 text-sm leading-relaxed">
-                        No. We have members who started at zero and hit 100K in 90 days. The strategies work regardless of your starting point.
+                    <div x-show="openFaq === 1" x-collapse>
+                        <div class="px-8 pb-6 text-gray-400 text-base leading-relaxed border-t border-creator-border pt-4">
+                            Yes! Starting from 0 is actually the best position because you haven't trained the algorithm poorly yet. We will show you how to warm up a fresh account properly so your very first videos get pushed to the FYP immediately.
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center font-bold hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
-                        <span>What niche should I choose?</span>
-                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-creator-base border border-creator-border rounded-xl overflow-hidden transition-all duration-300">
+                    <button @click="openFaq = openFaq === 2 ? null : 2" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-creator-border/50 focus:outline-none">
+                        <span class="font-bold text-white text-lg">Do I have to show my face?</span>
+                        <svg :class="{'rotate-180 text-creator-pink': openFaq === 2}" class="w-6 h-6 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="hidden px-6 pb-4 text-gray-400 text-sm leading-relaxed">
-                        We help you identify profitable niches based on your interests and market gaps. From lifestyle to finance to fitness - the formula works across categories.
+                    <div x-show="openFaq === 2" x-collapse>
+                        <div class="px-8 pb-6 text-gray-400 text-base leading-relaxed border-t border-creator-border pt-4">
+                            No. While personal brands (showing face) build high trust, we have entire sections dedicated to "Faceless" content (Theme pages, Reddit stories, AI-generated visuals, compilation pages) that generate millions of views and massive affiliate revenue.
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center font-bold hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
-                        <span>How quickly can I monetize?</span>
-                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-creator-base border border-creator-border rounded-xl overflow-hidden transition-all duration-300">
+                    <button @click="openFaq = openFaq === 3 ? null : 3" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-creator-border/50 focus:outline-none">
+                        <span class="font-bold text-white text-lg">What if I don't know what niche to pick?</span>
+                        <svg :class="{'rotate-180 text-creator-pink': openFaq === 3}" class="w-6 h-6 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="hidden px-6 pb-4 text-gray-400 text-sm leading-relaxed">
-                        Creator Fund requires 10K followers. But affiliate marketing and digital products can start immediately. We teach both short and long-term monetization.
+                    <div x-show="openFaq === 3" x-collapse>
+                        <div class="px-8 pb-6 text-gray-400 text-base leading-relaxed border-t border-creator-border pt-4">
+                            Module 1 covers exact niche selection. We break down the highest RPM (Revenue Per Mille) niches like Finance, Tech, and Business, as well as passion niches. We will help you find the intersection between what you like and what makes money.
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center font-bold hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
-                        <span>Is this just for TikTok?</span>
-                        <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-creator-base border border-creator-border rounded-xl overflow-hidden transition-all duration-300">
+                    <button @click="openFaq = openFaq === 4 ? null : 4" class="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-creator-border/50 focus:outline-none">
+                        <span class="font-bold text-white text-lg">Why should I use the link on this page?</span>
+                        <svg :class="{'rotate-180 text-creator-pink': openFaq === 4}" class="w-6 h-6 text-gray-500 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="hidden px-6 pb-4 text-gray-400 text-sm leading-relaxed">
-                        Primary focus is TikTok, but we cover repurposing for Instagram Reels and YouTube Shorts. Dominate short-form content everywhere.
+                    <div x-show="openFaq === 4" x-collapse>
+                        <div class="px-8 pb-6 text-gray-400 text-base leading-relaxed border-t border-creator-border pt-4">
+                            This is an official affiliate promotional page. By clicking "Join Premium" on this site, you are securely routed directly to the Social Army Whop checkout. We earn a commission at zero extra cost to you, which allows us to keep curating the best creator tools online.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">YOUR VIRAL MOMENT AWAITS</h2>
-            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Stop posting into the void. Join Social Army and build an audience that pays you.</p>
+    <footer class="bg-creator-base pt-20 pb-10">
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-black text-white uppercase mb-8">Stop Consuming. Start Creating.</h2>
+                <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" class="inline-block bg-white text-black font-display font-bold uppercase tracking-wider text-sm px-12 py-5 rounded-full transition-all hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                    Access Social Army
+                </a>
+            </div>
             
-            <a href="https://whop.com/social-army/social-army?a=digitalartlab" target="_blank" 
-               class="btn-tiktok text-white font-black text-xl px-12 py-6 rounded-full transition-all transform hover:scale-105 glow-pink inline-flex items-center gap-3">
-                <span>JOIN NOW - $39/MONTH</span>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-            </a>
-            
-            <p class="text-sm text-gray-500 mt-6">🔒 Secure Whop checkout • Cancel anytime • 20% affiliate commission</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#0a0a0f] border-t border-pink-500/20 py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-[#ff0050] to-[#00f2ea] rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            <div class="grid lg:grid-cols-12 gap-12 border-t border-creator-border pt-12">
+                <div class="lg:col-span-4">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 rounded-lg bg-creator-panel border border-creator-border flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <span class="font-display font-black text-xl tracking-tight text-white uppercase">Social<span class="text-creator-cyan">Army</span></span>
                     </div>
-                    <span class="font-display text-xl font-bold tracking-tight">SOCIAL<span class="text-[#ff0050]">ARMY</span></span>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        The internet's top-rated community for mastering short-form content, hacking the algorithm, and monetizing your personal brand.
+                    </p>
                 </div>
-                <div class="text-sm text-gray-500 text-center md:text-right">
-                    <p>20% affiliate commission on all memberships</p>
-                    <p class="mt-1">Results require consistent effort and content creation.</p>
+                
+                <div class="lg:col-span-8">
+                    <div class="text-xs text-gray-600 space-y-4 leading-relaxed font-medium">
+                        <p><strong class="text-gray-400 uppercase tracking-wider">Affiliate Disclosure:</strong> This website operates as an independent affiliate partner. We earn a commission when you purchase Whop access via the links on this page. This does not affect the price you pay.</p>
+                        <p><strong class="text-gray-400 uppercase tracking-wider">Earnings Disclaimer:</strong> The follower counts, view counts, and revenue numbers shown are for illustrative purposes and reflect potential results based on past member successes. Social media growth requires consistent effort, high-quality content creation, and adaptability. We do not guarantee that you will achieve the same results or make any money. All sales and subscriptions are handled securely by Whop.</p>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mt-12 pt-8 border-t border-creator-border text-xs text-gray-600 font-bold uppercase tracking-widest">
+                <p>&copy; 2026 Social Army Affiliates. All Rights Reserved.</p>
+                <p class="mt-4 md:mt-0 flex items-center gap-2 text-gray-400">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                    Secure Checkout via Whop
+                </p>
             </div>
         </div>
     </footer>
 
-    
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const stickyCta = document.getElementById('stickyCta');
-            if (window.scrollY > 500) stickyCta.classList.add('visible');
-            else stickyCta.classList.remove('visible');
-        });
-
-        function toggleFaq(button) {
-            const answer = button.nextElementSibling;
-            const arrow = button.querySelector('svg');
-            if (answer.classList.contains('hidden')) {
-                answer.classList.remove('hidden');
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                answer.classList.add('hidden');
-                arrow.style.transform = 'rotate(0deg)';
-            }
-        }
-    </script>
 </body>
 </html>
